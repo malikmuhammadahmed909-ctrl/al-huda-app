@@ -1,0 +1,21 @@
+{
+  "short_name": "Al-Huda",
+  "name": "Al-Huda Islamic Hub",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/alhuda/192/192",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://picsum.photos/seed/alhuda/512/512",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#064e3b",
+  "display": "standalone",
+  "theme_color": "#064e3b",
+  "description": "Comprehensive Islamic Hub with Quran, Hadith, and AI Assistant."
+}
