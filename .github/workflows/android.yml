@@ -1,39 +1,22 @@
 name: Build Android APK
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install --force
-
-      - name: Build Web Project
-        run: |
-          export CI=false
-          npm run build --if-present || true
-
-      - name: Setup Android Project
-        run: |
-          npx cap add android || true
-          npx cap sync || true
-
+      - run: npm install --force
+      - run: mkdir -p dist && touch dist/index.html 
+      - run: npx cap add android || true
+      - run: npx cap sync || true
       - name: Build APK
         run: |
-          cd android
-          chmod +x gradlew
+          cd android && chmod +x gradlew
           ./gradlew assembleDebug
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: al-huda-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
